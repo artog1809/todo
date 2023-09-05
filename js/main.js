@@ -30,4 +30,9 @@ form.addEventListener('submit', function (event) {
 
     // Добавляем задачу на стрвницу
     tasksList.insertAdjacentHTML('beforeend', taskHtml);
+
+    // Очищаем поле ввода и вовзращаем на него фокус
+    taskInput.value = "";
+    taskInput.focus();
 })
+
