@@ -9,10 +9,13 @@ const tasksList = document.querySelector("#tasksList");
 const emptyList = document.querySelector("#emptyList");
 
 // Добавление задачи
-form.addEventListener('submit',addTask); 
+form.addEventListener('submit', addTask);
 
 // Удаление задачи
 tasksList.addEventListener('click', deleteTask);
+
+// Выполнение задачи
+tasksList.addEventListener('click', doneTask);
 
 function addTask(event) {
     // Отменяем отправку формы
@@ -50,17 +53,25 @@ function addTask(event) {
 }
 
 
-function deleteTask(event){
+function deleteTask(event) {
 
     // Проверяем был ли клик по кнопке удаления
-    if(event.target.dataset.action === 'delete')
-    {
-        const parentNode = event.target.closest('li');
+    if (event.target.dataset.action === 'delete') {
+        const parentNode = event.target.closest('.list-group-item');
         parentNode.remove();
-    }
 
-    // Если список задач пуст, то показываем блок "Список дел пуст"
-    if (tasksList.children.length === 1) {
-        emptyList.classList.remove("none");
+        // Если список задач пуст, то показываем блок "Список дел пуст"
+        if (tasksList.children.length === 1) {
+            emptyList.classList.remove("none");
+        }
+    }
+}
+
+function doneTask(event) {
+    if (event.target.dataset.action === 'done') {
+        const parentNode = event.target.closest('.list-group-item');
+        const taskTitle = parentNode.querySelector('.task-title');
+        taskTitle.classList.toggle('task-title--done')
+        console.log(taskTitle);
     }
 }
