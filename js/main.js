@@ -6,6 +6,8 @@ const taskInput = document.querySelector("#taskInput");
 
 const tasksList = document.querySelector("#tasksList");
 
+const emptyList = document.querySelector("#emptyList");
+
 form.addEventListener('submit', function (event) {
     // Отменяем отправку формы
     event.preventDefault();
@@ -33,6 +35,11 @@ form.addEventListener('submit', function (event) {
 
     // Очищаем поле ввода и вовзращаем на него фокус
     taskInput.value = "";
-    taskInput.focus();
+    taskInput.focus(); 
+
+    // Если список задач не пуст, то скрываем блок "Список дел пуст"
+    if(tasksList.children.length > 1) {
+        emptyList.classList.add("none");
+    }
 })
 
